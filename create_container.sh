@@ -65,7 +65,7 @@ TEMP_DIR=$(mktemp -d)
 pushd $TEMP_DIR >/dev/null
 
 # Download setup script
-wget -qL https://github.com/chpego/proxmox_ispyagentdvr_lxc/raw/master/setup.sh
+wget -qL https://github.com/chpego/proxmox_ispyagentdvr_lxc/raw/main/setup.sh
 
 # Detect modules and automatically load at boot
 load_module aufs
@@ -102,12 +102,12 @@ info "Using '$STORAGE' for storage location."
 CTID=$(pvesh get /cluster/nextid)
 info "Container ID is $CTID."
 
-# Download latest Ubuntu 18.04 LXC template
+# Download latest Debian 10 LXC template
 msg "Updating LXC template list..."
 pveam update >/dev/null
 msg "Downloading LXC template..."
-OSTYPE=ubuntu
-OSVERSION=${OSTYPE}-18
+OSTYPE=debian
+OSVERSION=${OSTYPE}-10
 mapfile -t TEMPLATES < <(pveam available -section system | sed -n "s/.*\($OSVERSION.*\)/\1/p" | sort -t - -k 2 -V)
 TEMPLATE="${TEMPLATES[-1]}"
 pveam download local $TEMPLATE >/dev/null ||
