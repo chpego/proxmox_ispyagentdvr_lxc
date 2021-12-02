@@ -65,7 +65,7 @@ docker run --name ispyagentdvr -it \
           -v ispyagentdvr_config:/agent/Media/XML \
           -v ispyagentdvr_media:/agent/Media/WebServerRoot/Media \
           -v ispyagentdvr_commands:/agent/Commands \
-          -p 8090:8090 -p 3478:3478/udp 
+          -p 8090:8090 -p 3478:3478/udp \
           -p 50000-50010:50000-50010/udp \
           -d doitandbedone/ispyagentdvr &>/dev/null
 
